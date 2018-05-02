@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  qrcode_backend:
+    build:
+      context: ..
+      dockerfile: Dockerfile-dev
+    container_name: qrcode_backend
+    ports:
+      - "8080:80"
+    volumes:
+      - ..:/home/docker/code
+      - ./local_data/logs:/var/logs
+    environment:
+      - ENV=develop
+    networks:
+      - qrcode
+
+networks:
+  qrcode:
