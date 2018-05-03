@@ -1,5 +1,4 @@
 .vscode/
 .DS_Store
 env/
-src/qrimages/
 scripts/local_data/logs/
