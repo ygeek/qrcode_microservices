@@ -1,4 +1,6 @@
 .vscode/
 .DS_Store
 env/
-scripts/local_data/logs/
+src/qrimages/combine/*.pdf
+src/qrimages/temp/*.png
+scripts/local_data/logs/*.log
