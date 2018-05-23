@@ -5,9 +5,10 @@ from pdf2image import convert_from_bytes, convert_from_path
 from pyzbar.pyzbar import decode
 from PIL import Image, ImageDraw, ImageFont
 
+
 app = Flask(__name__)
 
-ppi = 36
+ppi = 30
 
 @app.route('/')
 def hello():
@@ -78,12 +79,17 @@ def encode_qr():
 
 @app.route('/decode_qr', methods=['POST'])
 def decode_qr():
+	BACKEND_URL = os.getenv('BACKEND_URL')
+
 	doc_type = request.json['doc_type']
 	attachment_id = request.json['attachment_id']
 	token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVc2VyIjp7InVzZXJfaWQiOjF9LCJleHAiOjE1MjczMDI4MDN9.Juu6qR2AmQVy7SJAIGXbKgDrOvzRdvicME8cmMeygMw'
-	api_url = 'http://suncity-backend.worklize.com/attachments/{attachment_id}/download'
+	# api_url = 'http://suncity-backend.worklize.com/{attachment_id}/download'
+	api_url = '{backend_url}/{attachment_id}/download'
 
-	response = requests.get(headers = {'Token': token}, url = api_url.format(attachment_id = attachment_id))
+
+	# response = requests.get(headers = {'Token': token}, url = api_url.format(attachment_id = attachment_id))
+	response = requests.get(headers = {'Token': token}, url = api_url.format(attachment_id = attachment_id, backend_url = BACKEND_URL))
 	decode_res = []
 	if doc_type == 'png' or doc_type == 'jpg':
 		__image__ = Image.open(io.BytesIO(response.content))
