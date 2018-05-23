@@ -14,6 +14,7 @@ services:
       - ./local_data/logs:/var/logs
     environment:
       - ENV=develop
+      - BACKEND_URL=http://suncity-backend.worklize.com
     networks:
       - qrcode
 
