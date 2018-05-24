@@ -85,7 +85,7 @@ def decode_qr():
 	attachment_id = request.json['attachment_id']
 	token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVc2VyIjp7InVzZXJfaWQiOjF9LCJleHAiOjE1MjczMDI4MDN9.Juu6qR2AmQVy7SJAIGXbKgDrOvzRdvicME8cmMeygMw'
 	# api_url = 'http://suncity-backend.worklize.com/{attachment_id}/download'
-	api_url = '{backend_url}/{attachment_id}/download'
+	api_url = '{backend_url}/attachments/{attachment_id}/download'
 
 
 	# response = requests.get(headers = {'Token': token}, url = api_url.format(attachment_id = attachment_id))
