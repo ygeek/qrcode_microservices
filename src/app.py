@@ -83,13 +83,13 @@ def decode_qr():
 
 	doc_type = request.json['doc_type']
 	attachment_id = request.json['attachment_id']
-	token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVc2VyIjp7InVzZXJfaWQiOjF9LCJleHAiOjE1MjczMDI4MDN9.Juu6qR2AmQVy7SJAIGXbKgDrOvzRdvicME8cmMeygMw'
+	# token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVc2VyIjp7InVzZXJfaWQiOjF9LCJleHAiOjE1MjczMDI4MDN9.Juu6qR2AmQVy7SJAIGXbKgDrOvzRdvicME8cmMeygMw'
 	# api_url = 'http://suncity-backend.worklize.com/{attachment_id}/download'
 	api_url = '{backend_url}/attachments/{attachment_id}/download?source=qrcode'
 
 
 	# response = requests.get(headers = {'Token': token}, url = api_url.format(attachment_id = attachment_id))
-	response = requests.get(headers = {'Token': token}, url = api_url.format(attachment_id = attachment_id, backend_url = BACKEND_URL))
+	response = requests.get(url = api_url.format(attachment_id = attachment_id, backend_url = BACKEND_URL))
 	decode_res = []
 	if doc_type == 'png' or doc_type == 'jpg':
 		__image__ = Image.open(io.BytesIO(response.content))
