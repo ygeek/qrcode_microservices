@@ -69,9 +69,9 @@ def encode_qr():
 		combine_img.paste(txt, (img_x_margin * x_order + 25 * ppi + 8 * ppi, img_y_margin * y_order + 21 * ppi) )
 		combine_img = combine_img.convert("RGB")
 		if (idx + 1) % 40 == 0 or (idx + 1) == len(img_lst) :
-			combine_img.save(('{base_path}/qrimages/temp/res.jpg').format(base_path = os.getcwd()))
+			combine_img.save(('{base_path}/qrimages/temp/res{idx}.jpg').format(base_path = os.getcwd(), idx = idx))
 			pdf.add_page()
-			pdf.image(('{base_path}/qrimages/temp/res.jpg').format(base_path = os.getcwd()),0, 0, 210, 297, 'jpg')
+			pdf.image(('{base_path}/qrimages/temp/res{idx}.jpg').format(base_path = os.getcwd(), idx = idx),0, 0, 210, 297, 'jpg')
 
 			combine_img = Image.new('RGBA', (210 * ppi, 297 * ppi), (255, 255, 255, 255))
 	pdf.output(('{base_path}/qrimages/combine/res.pdf').format(base_path=os.getcwd()))
